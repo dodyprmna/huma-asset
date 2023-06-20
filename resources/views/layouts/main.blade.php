@@ -11,7 +11,7 @@
 	<script>
 		WebFont.load({
 			google: {"families":["Lato:300,400,700,900"]},
-			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: {{ url('template/css/fonts.min.css') }}},
+			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['{{ url('template/css/fonts.min.css') }}']},
 			active: function() {
 				sessionStorage.fonts = true;
 			}
@@ -152,7 +152,7 @@
 
 	<!-- Atlantis JS -->
 	<script src="{{ url('template/js/atlantis.min.js') }}"></script>
-	<script>
+	{{-- <script>
 		Circles.create({
 			id:'circles-1',
 			radius:45,
@@ -245,6 +245,6 @@
 			lineColor: '#ffa534',
 			fillColor: 'rgba(255, 165, 52, .14)'
 		});
-	</script>
+	</script> --}}
 </body>
 </html>
