@@ -5,6 +5,7 @@
 	<title>{{ $title }}</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 	<link rel="icon" href="{{ url('template/img/icon.ico') }}" type="image/x-icon"/>
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 	<!-- Fonts and icons -->
 	<script src="{{ url('template/js/plugin/webfont/webfont.min.js') }}"></script>
@@ -114,6 +115,14 @@
 			</div>
 		</div>
 		<!-- End Custom template -->
+		@if(Session::has('success'))
+        <div class="alert alert-success">
+            {{ Session::get('success') }}
+            @php
+                Session::forget('success');
+            @endphp
+        </div>
+        @endif
 	</div>
 	<!--   Core JS Files   -->
 	<script src="{{ url('template/js/core/jquery.3.2.1.min.js') }}"></script>
@@ -152,6 +161,14 @@
 
 	<!-- Atlantis JS -->
 	<script src="{{ url('template/js/atlantis.min.js') }}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+	<script>
+	$(document).ready(function() {
+		$('.select2').select2();
+	});
+
+	</script>
 	{{-- <script>
 		Circles.create({
 			id:'circles-1',
