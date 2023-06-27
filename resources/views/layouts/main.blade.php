@@ -165,10 +165,20 @@
 
 	<script>
 	$(document).ready(function() {
-		$('.select2').select2();
+		$('.select2').select2(
+			width : '100%',
+		);
 	});
+	
 
 	</script>
+	@if (session('success'))
+		<script>
+			<script>
+			swal("", {{ session('success') }}, "success");
+		</script>
+		</script>
+	@endif
 	{{-- <script>
 		Circles.create({
 			id:'circles-1',

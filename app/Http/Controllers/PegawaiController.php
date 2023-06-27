@@ -7,6 +7,8 @@ use App\Models\Pegawai;
 use App\Models\Unit;
 use App\Models\Level;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class PegawaiController extends Controller
 {
@@ -37,23 +39,44 @@ class PegawaiController extends Controller
     {
         $validateData = $request->validate(
             [
-                'nip'       => 'required|unique:pegawai',
-                'nama'      => 'required',
+                'nip'       => ['required','max:50',Rule::unique('pegawai', 'nip')->ignore($request->id_pegawai, 'id_pegawai')],
+                'nama'      => 'required|max:70',
                 'unit'      => 'required',
-                'email'     => 'required|email|unique:pegawai',
-                'level'     => 'required'
+                'email'     => 'required|email|max:40|unique:pegawai,email',
+                'level'     => 'required',
+                'telepon'   => 'max:15',
+                'alamat'    => 'max:225',
             ],
             [
                 'nip.required'      => 'Field NIP harus diisi.',
+                'nip.unique'        => 'NIP sudah terdaftar',
                 'nama.required'     => 'Field nama harus diisi',
                 'unit.required'     => 'Field unit harus diisi.',
                 'email.required'    => 'Field email harus diisi.',
-                'email.email'       => 'Field email harus alamat email.'
+                'email.email'       => 'Field email tidak valid',
+                'email.max'         => 'Field email maksimal 40 karakter',
+                'email.unique'      => 'Email sudah terdaftar',
+                'telepon.max'       => 'Field telepon maksimal 15 karakter',
+                'alamat.max'        => 'Field alamat maksimal 225 karakter'
             ]
         );
 
-        $pegawai = Pegawai::create($validateData);
+        $pegawai = new Pegawai;
 
-        return back()->with('success', 'Pegawai berhasil ditambahkan');
+        $pegawai->nip = $request->nip;
+        $pegawai->nama = $request->nama;
+        $pegawai->id_call_center = $request->unit;
+        $pegawai->id_level = $request->level;
+        $pegawai->alamat = $request->alamat;
+        $pegawai->no_telp = $request->telepon;
+        $pegawai->email = $request->email;
+        $pegawai->status = $request->status;
+        $pegawai->password = Hash::make($request->nip);
+
+        $pegawai->save();
+
+        return redirect('pegawai')->with('success','Data pegawai berhasil ditambahkan');
+
+
     }
 }
