@@ -14,7 +14,7 @@
 							
 								<button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_export"><i class="fa fa-file-excel"></i> Excel</button>
 							
-								<a href="{{ url('Pegawai/create') }}" class="btn btn-primary btn-sm" style="float: right; margin-left: 3px;"><i class="fa fa-plus"></i> Tambah Data</a>
+								<a href="{{ url('pegawai/create') }}" class="btn btn-primary btn-sm" style="float: right; margin-left: 3px;"><i class="fa fa-plus"></i> Tambah Data</a>
 								<button class="btn btn-secondary btn-sm" title="Import Excel" data-toggle="modal" data-target="#modal_import_tanah" style="float: right;"><i class="fas fa-file-import"></i></button>
 							
 						</div>
