@@ -6,6 +6,7 @@
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 	<link rel="icon" href="{{ url('template/img/icon.ico') }}" type="image/x-icon"/>
 	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="{{ url('template/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
 
 	<!-- Fonts and icons -->
 	<script src="{{ url('template/js/plugin/webfont/webfont.min.js') }}"></script>
@@ -165,18 +166,17 @@
 
 	<script>
 	$(document).ready(function() {
-		$('.select2').select2(
+		$('.select2').select2({
 			width : '100%',
-		);
+			theme: 'bootstrap4',
+		});
 	});
 	
 
 	</script>
 	@if (session('success'))
 		<script>
-			<script>
 			swal("", {{ session('success') }}, "success");
-		</script>
 		</script>
 	@endif
 	{{-- <script>

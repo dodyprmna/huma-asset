@@ -42,7 +42,7 @@ class PegawaiController extends Controller
                 'nip'       => ['required','max:50',Rule::unique('pegawai', 'nip')->ignore($request->id_pegawai, 'id_pegawai')],
                 'nama'      => 'required|max:70',
                 'unit'      => 'required',
-                'email'     => 'required|email|max:40|unique:pegawai,email',
+                'email'     => ['required','email','max:40',Rule::unique('pegawai', 'email')->ignore($request->id_pegawai, 'id_pegawai')],
                 'level'     => 'required',
                 'telepon'   => 'max:15',
                 'alamat'    => 'max:225',
