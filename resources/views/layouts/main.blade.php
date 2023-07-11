@@ -116,14 +116,7 @@
 			</div>
 		</div>
 		<!-- End Custom template -->
-		@if(Session::has('success'))
-        <div class="alert alert-success">
-            {{ Session::get('success') }}
-            @php
-                Session::forget('success');
-            @endphp
-        </div>
-        @endif
+		
 	</div>
 	<!--   Core JS Files   -->
 	<script src="{{ url('template/js/core/jquery.3.2.1.min.js') }}"></script>
@@ -176,7 +169,7 @@
 	</script>
 	@if (session('success'))
 		<script>
-			swal("", {{ session('success') }}, "success");
+			swal("", "{{ session('success') }}", "success");
 		</script>
 	@endif
 	{{-- <script>
