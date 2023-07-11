@@ -10,6 +10,6 @@ class Pegawai extends Model
 {
     use SoftDeletes;
     protected $table = 'pegawai';
-    protected $primarykey = 'id_pegawai';
+    protected $primaryKey = 'id_pegawai';
 
 }

@@ -44,8 +44,11 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="mx-4 mt-2">
-                    <a href="http://themekita.com/atlantis-bootstrap-dashboard.html" class="btn btn-primary btn-block"><span class="btn-label mr-2"> <i class="fa fa-heart"></i> </span>Buy Pro</a> 
+                <li class="nav-item {{ $menu == 'Pegawai' ? 'active' : '' }}">
+                    <a href="{{ Url('pegawai') }}">
+                        <i class="fas fa-users"></i>
+                        <p>Pegawai</p>
+                    </a>
                 </li>
             </ul>
         </div>

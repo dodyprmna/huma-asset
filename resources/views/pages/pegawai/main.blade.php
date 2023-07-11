@@ -15,7 +15,6 @@
 								<button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_export"><i class="fa fa-file-excel"></i> Excel</button>
 							
 								<a href="{{ url('pegawai/create') }}" class="btn btn-primary btn-sm" style="float: right; margin-left: 3px;"><i class="fa fa-plus"></i> Tambah Data</a>
-								<button class="btn btn-secondary btn-sm" title="Import Excel" data-toggle="modal" data-target="#modal_import_tanah" style="float: right;"><i class="fas fa-file-import"></i></button>
 							
 						</div>
 					</div>
@@ -41,7 +40,7 @@
                                         <div class="btn-group-vertical btn-group-sm" role="group" aria-label="Basic example">
                                             <a href="" class="btn btn-secondary" title="Lihat Data"><i class="fa fa-eye"></i></a>
                                             
-                                                <a href="" class="btn btn-primary" title="Edit Data"><i class="fa fa-edit"></i></a>
+                                                <a href="{{ url('pegawai/'.$item->id_pegawai) }}" class="btn btn-primary" title="Edit Data"><i class="fa fa-edit"></i></a>
                                             
                                             
                                                 <a href="" class="btn btn-danger" title="Hapus Data" onclick=""><i class="fa fa-trash"></i></a>

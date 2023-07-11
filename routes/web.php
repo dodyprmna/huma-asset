@@ -23,3 +23,5 @@ Route::get('/tanah', [TanahController::class, 'index'] );
 Route::get('/pegawai', [PegawaiController::class, 'index'] );
 Route::get('/pegawai/create', [PegawaiController::class, 'create'] );
 Route::post('/pegawai/create', [PegawaiController::class, 'store']);
+Route::get('/pegawai/{id}', [PegawaiController::class, 'edit']);
+Route::put('/pegawai/{id}', [PegawaiController::class, 'update']);

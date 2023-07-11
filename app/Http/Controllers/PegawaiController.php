@@ -77,6 +77,61 @@ class PegawaiController extends Controller
 
         return redirect('pegawai')->with('success','Data pegawai berhasil ditambahkan');
 
+    }
+
+    public function edit($id)
+    {
+        $data = array(
+            'title'     => 'Edit Pegawai',
+            'menu'      => 'Pegawai', 
+            'pegawai'   => Pegawai::find($id),
+            'level'     => Level::all(),
+            'unit'      => Unit::all()
+        );
+
+        return view('pages.pegawai.edit', $data);
+    }
+
+    public function update(Request $request, $id): RedirectResponse
+    {
+        $validateData = $request->validate(
+            [
+                'nip'       => ['required','max:50',Rule::unique('pegawai', 'nip')->ignore($request->id_pegawai, 'id_pegawai')],
+                'nama'      => 'required|max:70',
+                'unit'      => 'required',
+                'email'     => ['required','email','max:40',Rule::unique('pegawai', 'email')->ignore($request->id_pegawai, 'id_pegawai')],
+                'level'     => 'required',
+                'telepon'   => 'max:15',
+                'alamat'    => 'max:225',
+            ],
+            [
+                'nip.required'      => 'Field NIP harus diisi.',
+                'nip.unique'        => 'NIP sudah terdaftar',
+                'nama.required'     => 'Field nama harus diisi',
+                'unit.required'     => 'Field unit harus diisi.',
+                'email.required'    => 'Field email harus diisi.',
+                'email.email'       => 'Field email tidak valid',
+                'email.max'         => 'Field email maksimal 40 karakter',
+                'email.unique'      => 'Email sudah terdaftar',
+                'telepon.max'       => 'Field telepon maksimal 15 karakter',
+                'alamat.max'        => 'Field alamat maksimal 225 karakter'
+            ]
+        );
+
+        $pegawai = Pegawai::find($id);
+
+        $pegawai->nip = $request->nip;
+        $pegawai->nama = $request->nama;
+        $pegawai->id_call_center = $request->unit;
+        $pegawai->id_level = $request->level;
+        $pegawai->alamat = $request->alamat;
+        $pegawai->no_telp = $request->telepon;
+        $pegawai->email = $request->email;
+        $pegawai->status = $request->status;
+
+        $pegawai->save();
+
+        return redirect('pegawai')->with('success','Data pegawai berhasil diperbarui');
 
     }
 }
