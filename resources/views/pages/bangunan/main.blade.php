@@ -14,7 +14,8 @@
 							
 								<button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_export"><i class="fa fa-file-excel"></i> Excel</button>
 							
-								<a href="{{ url('pegawai/create') }}" class="btn btn-primary btn-sm" style="float: right; margin-left: 3px;"><i class="fa fa-plus"></i> Tambah Data</a>
+								<a href="{{ url('bangunan/create') }}" class="btn btn-primary btn-sm" style="float: right; margin-left: 3px;"><i class="fa fa-plus"></i> Tambah Data</a>
+								<button class="btn btn-secondary btn-sm" title="Import Excel" data-toggle="modal" data-target="#modal_import_tanah" style="float: right;"><i class="fas fa-file-import"></i></button>
 							
 						</div>
 					</div>
@@ -25,14 +26,16 @@
                             <thead>
                                 <tr>
                                     <th>Aksi</th>
-									<th>NIP</th>
-                                    <th>Nama</th>
-                                    <th>Level</th>
+									<th>Unit</th>
+                                    <th>No. Aset</th>
+                                    <th>Nama Aset</th>
+                                    <th>Luas</th>
+                                    <th>Lokasi</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($pegawai as $item)
+                                @foreach ($bangunan as $item)
                                     
                                 
                                 <tr>
@@ -40,16 +43,18 @@
                                         <div class="btn-group-vertical btn-group-sm" role="group" aria-label="Basic example">
                                             <a href="" class="btn btn-secondary" title="Lihat Data"><i class="fa fa-eye"></i></a>
                                             
-                                                <a href="{{ url('pegawai/'.$item->id_pegawai.'/edit') }}" class="btn btn-primary" title="Edit Data"><i class="fa fa-edit"></i></a>
+                                                <a href="{{ url('pegawai/'.$item->id_pegawai) }}" class="btn btn-primary" title="Edit Data"><i class="fa fa-edit"></i></a>
                                             
                                             
                                                 <a href="" class="btn btn-danger" title="Hapus Data" onclick=""><i class="fa fa-trash"></i></a>
                                                                                     
                                         </div>
                                     </td>
-                                    <td>{{$item->nip}}</td>
-                                    <td>{{$item->nama}}</td>
-                                    <td>{{$item->level}}</td>
+                                    <td>{{$item->nama_call_center}}</td>
+                                    <td>{{$item->nomor_asset}}</td>
+                                    <td>{{$item->nama_asset}}</td>
+                                    <td>{{$item->luas }}</td>
+                                    <td>{{$item->lokasi }}</td>
                                     <td>
                                     @if ($item->status == 1)
                                         <span class='badge badge-pill badge-success'>Aktif</span>
