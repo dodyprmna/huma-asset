@@ -41,16 +41,16 @@
                                 <tr>
                                     <td>
                                         <div class="btn-group-vertical btn-group-sm" role="group" aria-label="Basic example">
-                                            <a href="" class="btn btn-secondary" title="Lihat Data"><i class="fa fa-eye"></i></a>
+                                            <a href="{{ url('bangunan/'.$item->id_bangunan) }}" class="btn btn-secondary" title="Lihat Data"><i class="fa fa-eye"></i></a>
                                             
-                                                <a href="{{ url('pegawai/'.$item->id_pegawai) }}" class="btn btn-primary" title="Edit Data"><i class="fa fa-edit"></i></a>
+                                                <a href="{{ url('bangunan/'.$item->id_bangunan.'/edit') }}" class="btn btn-primary" title="Edit Data"><i class="fa fa-edit"></i></a>
                                             
                                             
                                                 <a href="" class="btn btn-danger" title="Hapus Data" onclick=""><i class="fa fa-trash"></i></a>
                                                                                     
                                         </div>
                                     </td>
-                                    <td>{{$item->nama_call_center}}</td>
+                                    <td>{{$item->unit->nama_call_center}}</td>
                                     <td>{{$item->nomor_asset}}</td>
                                     <td>{{$item->nama_asset}}</td>
                                     <td>{{$item->luas }}</td>

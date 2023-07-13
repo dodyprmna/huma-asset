@@ -22,4 +22,4 @@ Route::get('/', function () {
 
 Route::get('/tanah', [TanahController::class, 'index'] );
 Route::resource('pegawai', PegawaiController::class);
-Route::get('/bangunan',[BangunanController::class, 'index']);
+Route::resource('/bangunan',BangunanController::class);
