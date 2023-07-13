@@ -12,7 +12,7 @@ class UpdatePegawaiRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,10 +23,10 @@ class UpdatePegawaiRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nip'       => ['required','max:50',Rule::unique('pegawai', 'nip')->ignore($this->pegawai->id_pegawai, 'id_pegawai')],
+            'nip'       => ['required','max:50',Rule::unique('pegawai', 'nip')->ignore($this->id_pegawai, 'id_pegawai')],
             'nama'      => 'required|max:70',
             'unit'      => 'required',
-            'email'     => ['required','email','max:40',Rule::unique('pegawai', 'email')->ignore($this->pegawai->id_pegawai, 'id_pegawai')],
+            'email'     => ['required','email','max:40',Rule::unique('pegawai', 'email')->ignore($this->id_pegawai, 'id_pegawai')],
             'level'     => 'required',
             'telepon'   => 'max:15',
             'alamat'    => 'max:225',

@@ -12,8 +12,6 @@
 					<div class="row">
 						<div class="col-md-12">
 							
-								<button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_export"><i class="fa fa-file-excel"></i> Excel</button>
-							
 								<a href="{{ url('pegawai/create') }}" class="btn btn-primary btn-sm" style="float: right; margin-left: 3px;"><i class="fa fa-plus"></i> Tambah Data</a>
 							
 						</div>
@@ -38,12 +36,16 @@
                                 <tr>
                                     <td>
                                         <div class="btn-group-vertical btn-group-sm" role="group" aria-label="Basic example">
-                                            <a href="" class="btn btn-secondary" title="Lihat Data"><i class="fa fa-eye"></i></a>
+                                            <a href="{{ url('pegawai/'.$item->id_pegawai)}}" class="btn btn-secondary" title="Lihat Data"><i class="fa fa-eye"></i></a>
                                             
                                                 <a href="{{ url('pegawai/'.$item->id_pegawai.'/edit') }}" class="btn btn-primary" title="Edit Data"><i class="fa fa-edit"></i></a>
                                             
-                                            
-                                                <a href="" class="btn btn-danger" title="Hapus Data" onclick=""><i class="fa fa-trash"></i></a>
+                                                <form action="{{ url('pegawai/'.$item->id_pegawai)}}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button class="btn btn-danger show_confirm" title="Hapus Data" type="submit"><i class="fa fa-trash"></i></button>
+                                                </form>
                                                                                     
                                         </div>
                                     </td>
