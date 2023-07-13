@@ -12,7 +12,7 @@ class Unit extends Model
     use SoftDeletes;
     protected $table        = 'call_center';
     protected $primaryKey   ='id_call_center';
-
+    
     public function bangunan(): HasMany
     {
         return $this->hasMany(Bangunan::class, 'id_call_center');
