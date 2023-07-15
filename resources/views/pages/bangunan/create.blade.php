@@ -25,6 +25,7 @@
                 </div>
                 <div class="card-body">
                     <form action="{{ url('bangunan')}}" enctype="multipart/form-data" method="post">
+                        @csrf
                         <div class="form-group row">
                             <div class="col-md-2">
                                 <label>Unit *</label>
@@ -73,9 +74,9 @@
                                     <span class="invalid-feedback d-block">{{ $message }}</span>
                                 @enderror
                             </div>
-                            {{-- <div class="col-md-4">
-                                <div id="map" style="height: 250px;"></div>
-                            </div> --}}
+                            <div class="col-md-4" id='map'>
+                                {{-- <div id="map" style="height: 150px;"></div> --}}
+                            </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-md-2">
@@ -223,3 +224,7 @@
     </div>
 </div>
 @endsection
+@push('scripts')
+    <script src="{{ url('template/js/plugin/leaflet/leaflet.js')}}"></script>
+	<script src="{{ url('js/bangunan.js') }}"></script>
+@endpush

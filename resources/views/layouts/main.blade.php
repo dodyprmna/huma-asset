@@ -19,7 +19,7 @@
 			}
 		});
 	</script>
-
+	@stack('scripts')
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="{{ url('template/css/bootstrap.min.cs') }}s">
 	<link rel="stylesheet" href="{{ url('template/css/atlantis.min.css') }}">
@@ -118,18 +118,22 @@
 		<!-- End Custom template -->
 		
 	</div>
+	
 	<!--   Core JS Files   -->
 	<script src="{{ url('template/js/core/jquery.3.2.1.min.js') }}"></script>
+	{{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
 	<script src="{{ url('template/js/core/popper.min.js') }}"></script>
 	<script src="{{ url('template/js/core/bootstrap.min.js') }}"></script>
 
 	<!-- jQuery UI -->
-	<script src="template/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+	<script src="{{ url('template/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js') }}"></script>
 	<script src="{{ url('template/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js') }}"></script>
 
 	<!-- jQuery Scrollbar -->
 	<script src="{{ url('template/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js') }}"></script>
 
+	<!-- jQuery Mask -->
+	<script src="{{ url('template/js/plugin/inputmask/jquery.inputmask.bundle.js')}}"></script>
 
 	<!-- Chart JS -->
 	<script src="{{ url('template/js/plugin/chart.js/chart.min.js') }}"></script>
@@ -157,6 +161,7 @@
 	<script src="{{ url('template/js/atlantis.min.js') }}"></script>
 	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+	@stack('scripts')
 	<script>
 	$(document).ready(function() {
 		$('.select2').select2({
