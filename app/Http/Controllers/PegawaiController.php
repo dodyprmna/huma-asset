@@ -39,30 +39,6 @@ class PegawaiController extends Controller
 
     public function store(StorePegawaiRequest $request): RedirectResponse
     {
-        // $validateData = $request->validate(
-        //     [
-        //         'nip'       => ['required','max:50',Rule::unique('pegawai', 'nip')->ignore($request->id_pegawai, 'id_pegawai')],
-        //         'nama'      => 'required|max:70',
-        //         'unit'      => 'required',
-        //         'email'     => ['required','email','max:40',Rule::unique('pegawai', 'email')->ignore($request->id_pegawai, 'id_pegawai')],
-        //         'level'     => 'required',
-        //         'telepon'   => 'max:15',
-        //         'alamat'    => 'max:225',
-        //     ],
-        //     [
-        //         'nip.required'      => 'Field NIP harus diisi.',
-        //         'nip.unique'        => 'NIP sudah terdaftar',
-        //         'nama.required'     => 'Field nama harus diisi',
-        //         'unit.required'     => 'Field unit harus diisi.',
-        //         'email.required'    => 'Field email harus diisi.',
-        //         'email.email'       => 'Field email tidak valid',
-        //         'email.max'         => 'Field email maksimal 40 karakter',
-        //         'email.unique'      => 'Email sudah terdaftar',
-        //         'telepon.max'       => 'Field telepon maksimal 15 karakter',
-        //         'alamat.max'        => 'Field alamat maksimal 225 karakter'
-        //     ]
-        // );
-
         $validated = $request->validated(); 
 
         $pegawai = new Pegawai;
@@ -98,30 +74,6 @@ class PegawaiController extends Controller
 
     public function update(UpdatePegawaiRequest $request, Pegawai $id): RedirectResponse
     {
-        // $validateData = $request->validate(
-        //     [
-        //         'nip'       => ['required','max:50',Rule::unique('pegawai', 'nip')->ignore($request->id_pegawai, 'id_pegawai')],
-        //         'nama'      => 'required|max:70',
-        //         'unit'      => 'required',
-        //         'email'     => ['required','email','max:40',Rule::unique('pegawai', 'email')->ignore($request->id_pegawai, 'id_pegawai')],
-        //         'level'     => 'required',
-        //         'telepon'   => 'max:15',
-        //         'alamat'    => 'max:225',
-        //     ],
-        //     [
-        //         'nip.required'      => 'Field NIP harus diisi.',
-        //         'nip.unique'        => 'NIP sudah terdaftar',
-        //         'nama.required'     => 'Field nama harus diisi',
-        //         'unit.required'     => 'Field unit harus diisi.',
-        //         'email.required'    => 'Field email harus diisi.',
-        //         'email.email'       => 'Field email tidak valid',
-        //         'email.max'         => 'Field email maksimal 40 karakter',
-        //         'email.unique'      => 'Email sudah terdaftar',
-        //         'telepon.max'       => 'Field telepon maksimal 15 karakter',
-        //         'alamat.max'        => 'Field alamat maksimal 225 karakter'
-        //     ]
-        // );
-
         $validated = $request->validated();
 
         $pegawai = Pegawai::find($request->id_pegawai);

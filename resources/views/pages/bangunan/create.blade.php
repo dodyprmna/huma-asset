@@ -171,6 +171,9 @@
                                     <tr>
                                         <td><input type="file" class="form-control" name="file[]"></td>
                                         <td><button type="button" class="btn btn-secondary btn-sm add-file"><i class="fa fa-plus"></i></button></td>
+                                        @error('file')
+                                            <span class="invalid-feedback d-block">{{ $message }}</span>
+                                        @enderror
                                     </tr>
                                 </table>
                             </div>
