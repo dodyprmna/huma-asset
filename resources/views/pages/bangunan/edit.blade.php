@@ -24,8 +24,9 @@
                     <h5>{{ $title}}</h5>
                 </div>
                 <div class="card-body">
-                    <form action="{{ url('bangunan')}}" enctype="multipart/form-data" method="post">
+                    <form action="{{ url('bangunan/'.$bangunan->id_bangunan)}}" enctype="multipart/form-data" method="post">
                         @csrf
+                        @method('put')
                         <div class="form-group row">
                             <div class="col-md-2">
                                 <label>Unit *</label>
@@ -34,7 +35,7 @@
                                 <select name="call_center" class="form-control @error('call_center')is-invalid @enderror select2" data-placeholder="Pilih Unit" required>
                                     <option value="">- Pilih Unit -</option>
                                     @foreach($unit as $row)
-                                        <option value="{{ $row->id_call_center }}" {{ $row->id_call_center == old('call_center') ? 'selected' : ''}}>{{ $row->nama_call_center }}</option>
+                                        <option value="{{ $row->id_call_center }}" {{ $row->id_call_center == $bangunan->id_call_center ? 'selected' : ''}}>{{ $row->nama_call_center }}</option>
                                     @endforeach
                                 </select>
                                 @error('call_center')
@@ -47,7 +48,7 @@
                                 <label>Nomor Asset *</label>
                             </div>
                             <div class="col-md-10">
-                                <input class="form-control @error('nomor_asset')is-invalid @enderror" type="text" name="nomor_asset" value="{{ old('nomor_asset')}}" placeholder="Isikan nomor asset" required>
+                                <input class="form-control @error('nomor_asset')is-invalid @enderror" type="text" name="nomor_asset" value="{{ old('nomor_asset', $bangunan->nomor_asset)}}" placeholder="Isikan nomor asset" required>
                                 @error('nomor_asset')
                                     <span class="invalid-feedback d-block">{{ $message }}</span>
                                 @enderror
@@ -58,7 +59,7 @@
                                 <label>Nama Asset *</label>
                             </div>
                             <div class="col-md-10">
-                                <input class="form-control @error('nama_asset')is-invalid @enderror" type="text" name="nama_asset" value="{{ old('nama_asset')}}" placeholder="Isikan nama asset" required>
+                                <input class="form-control @error('nama_asset')is-invalid @enderror" type="text" name="nama_asset" value="{{ old('nama_asset', $bangunan->nama_asset)}}" placeholder="Isikan nama asset" required>
                                 @error('nama_asset')
                                     <span class="invalid-feedback d-block">{{ $message }}</span>
                                 @enderror
@@ -69,7 +70,7 @@
                                 <label>Lokasi *</label>
                             </div>
                             <div class="col-md-6">
-                                <Textarea class="form-control @error('lokasi')is-invalid @enderror" name="lokasi" id="lokasi" required placeholder="Isikan lokasi" rows="3">{{ old('lokasi')}}</Textarea>
+                                <Textarea class="form-control @error('lokasi')is-invalid @enderror" name="lokasi" id="lokasi" required placeholder="Isikan lokasi" rows="3">{{ old('lokasi', $bangunan->lokasi)}}</Textarea>
                                 @error('lokasi')
                                     <span class="invalid-feedback d-block">{{ $message }}</span>
                                 @enderror
@@ -83,7 +84,7 @@
                                 <label>Latitude *</label>
                             </div>
                             <div class="col-md-10">
-                            <input class="form-control @error('latitude')is-invalid @enderror" type="text" name="latitude" value="{{ old('latitude')}}" id="latitude" placeholder="Isikan Latitude" required>
+                            <input class="form-control @error('latitude')is-invalid @enderror" type="text" name="latitude" value="{{ old('latitude', $bangunan->latitude)}}" id="latitude" placeholder="Isikan Latitude" required>
                                 @error('latitude')
                                     <span class="invalid-feedback d-block">{{ $message }}</span>
                                 @enderror
@@ -94,7 +95,7 @@
                                 <label>Longitude *</label>
                             </div>
                             <div class="col-md-10">
-                            <input class="form-control @error('longitude')is-invalid @enderror" type="text" name="longitude" value="{{ old('longitude')}}" id="longitude" placeholder="Isikan longitude" required>
+                            <input class="form-control @error('longitude')is-invalid @enderror" type="text" name="longitude" value="{{ old('longitude', $bangunan->longitude)}}" id="longitude" placeholder="Isikan longitude" required>
                                 @error('longitude')
                                     <span class="invalid-feedback d-block">{{ $message }}</span>
                                 @enderror
@@ -105,7 +106,7 @@
                                 <label>Luas Bangunan</label>
                             </div>
                             <div class="col-md-10">
-                                <input class="form-control @error('luas_bangunan')is-invalid @enderror" step="any" min="1" type="number" name="luas_bangunan" value="{{ old('luas_bangunan')}}" placeholder="Isikan luas bangunan" >
+                                <input class="form-control @error('luas_bangunan')is-invalid @enderror" step="any" min="1" type="number" name="luas_bangunan" value="{{ old('luas_bangunan', $bangunan->luas_bangunan)}}" placeholder="Isikan luas bangunan" >
                                 @error('luas_bangunan')
                                     <span class="invalid-feedback d-block">{{ $message }}</span>
                                 @enderror
@@ -115,7 +116,7 @@
                             <div class="col-md-2">
                                 <label>Tahun Perolehan</label></div>
                             <div class="col-md-10">
-                                <input class="form-control @error('tahun_perolehan')is-invalid @enderror" min="1" type="number" name="tahun_perolehan" value="{{ old('tahun_perolehan')}}" placeholder="Isikan tahun perolehan">
+                                <input class="form-control @error('tahun_perolehan')is-invalid @enderror" min="1" type="number" name="tahun_perolehan" value="{{ old('tahun_perolehan', $bangunan->tahun_perolehan)}}" placeholder="Isikan tahun perolehan">
                                 @error('tahun_perolehan')
                                     <span class="invalid-feedback d-block">{{ $message }}</span>
                                 @enderror
@@ -126,7 +127,7 @@
                                 <label>Nilai Perolehan</label>
                             </div>
                             <div class="col-md-10">
-                                <input class="form-control numeric @error('nilai_perolehan')is-invalid @enderror" type="text" min="1" name="nilai_perolehan" value="{{ old('nilai_perolehan')}}" placeholder="Isikan nilai perolehan">
+                                <input class="form-control numeric @error('nilai_perolehan')is-invalid @enderror" type="text" min="1" name="nilai_perolehan" value="{{ old('nilai_perolehan', $bangunan->nilai_perolehan)}}" placeholder="Isikan nilai perolehan">
                                 @error('nilai_perolehan')
                                     <span class="invalid-feedback d-block">{{ $message }}</span>
                                 @enderror
@@ -137,7 +138,7 @@
                                 <label>Nilai Buku</label>
                             </div>
                             <div class="col-md-10">
-                                <input class="form-control numeric  @error('nilai_buku')is-invalid @enderror" type="text" min="1" name="nilai_buku" value="{{ old('nilai_buku')}}" placeholder="Isikan nilai buku">
+                                <input class="form-control numeric  @error('nilai_buku')is-invalid @enderror" type="text" min="1" name="nilai_buku" value="{{ old('nilai_buku',$bangunan->nilai_buku)}}" placeholder="Isikan nilai buku">
                                 @error('nilai_buku')
                                     <span class="invalid-feedback d-block">{{ $message }}</span>
                                 @enderror
@@ -148,7 +149,7 @@
                                 <label>Masa Berlaku Pajak</label>
                             </div>
                             <div class="col-md-10">
-                                <input class="form-control  @error('masa_berlaku_pajak')is-invalid @enderror" type="date" name="masa_berlaku_pajak" id="masa_berlaku_pajak" value="{{ old('masa_berlaku_pajak')}}" placeholder="Isikan Masa Berlaku pajak">
+                                <input class="form-control  @error('masa_berlaku_pajak')is-invalid @enderror" type="date" name="masa_berlaku_pajak" id="masa_berlaku_pajak" value="{{ old('masa_berlaku_pajak', $bangunan->masa_berlaku_pajak)}}" placeholder="Isikan Masa Berlaku pajak">
                                 @error('masa_berlaku_pajak')
                                     <span class="invalid-feedback d-block">{{ $message }}</span>
                                 @enderror
@@ -168,13 +169,33 @@
                             </div>
                             <div class="col-md-10">
                                 <table id="file">
-                                    <tr>
-                                        <td><input type="file" class="form-control @error('file')is-invalid @enderror" name="file[]"></td>
-                                        <td><button type="button" class="btn btn-secondary btn-sm add-file"><i class="fa fa-plus"></i></button></td>
-                                        @error('file.*')
-                                                <span class="invalid-feedback d-block">{{ $message }}</span>
-                                        @enderror
-                                    </tr>
+                                    @foreach ($file as $item)
+                                        <tr>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-md-11">
+                                                            <h5><?= $item->nama_file?></h5>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <form action="{{ url('bangunan/hapusFile/'.$item->id_file_bangunan)}}" method="post" class="delete_form">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </tr>
+                                        @endforeach
+                                        <tr>
+                                            <td><input type="file" class="form-control @error('file')is-invalid @enderror" name="file[]"></td>
+                                            <td><button type="button" class="btn btn-secondary btn-sm add-file"><i class="fa fa-plus"></i></button></td>
+                                            @error('file.*')
+                                            <span class="invalid-feedback d-block">{{ $message }}</span>
+                                            @enderror
+                                        </tr>
                                 </table>
                             </div>
                         </div>
@@ -362,8 +383,10 @@
                                     // });
                                 });
                                 
-                                $(document).on("click", ".btn-hapus-file", function () {
-                                    var id = $(this).data('id');
+                                $('.delete_form').submit(function (e) {
+                                    e.preventDefault();
+
+                                    var url = $(this).attr("action");
                                     swal({
                                         title: "Apakah anda yakin?",
                                         text: "file yang dihapus tidak dapat dipulihkan!",
@@ -373,8 +396,8 @@
                                     }).then((result) => {
                                         if (result) {	
                                             $.ajax({
-                                                url: base_url+"Bangunan/hapus_file/",
-                                                type: 'post',
+                                                url: url,
+                                                type: 'delete',
                                                 dataType: 'json',
                                                 data: {id : id},
                                                 success:function(data){

@@ -19,13 +19,13 @@
 			}
 		});
 	</script>
-	@stack('scripts')
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="{{ url('template/css/bootstrap.min.cs') }}s">
 	<link rel="stylesheet" href="{{ url('template/css/atlantis.min.css') }}">
 
-	<!-- CSS Just for demo purpose, don't include it in your project -->
-	<link rel="stylesheet" href="{{ url('template/css/demo.css') }}">
+	<!-- leaflet -->
+	<link rel="stylesheet" href="{{ url('template/js/plugin/leaflet/leaflet.css')}}">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch@3.3.2/dist/geosearch.css" />
 </head>
 <body>
 	<div class="wrapper">
@@ -41,6 +41,40 @@
 		<div class="main-panel">
 			<div class="content">
 				@yield('content')
+				<!-- modal import -->
+				<div class="modal fade" id="modal_import" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLongTitle">Import data</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body" id="body_modal_import">
+								<form action="#" enctype="multipart/form-data" method="post" id="form_import">
+									<div class="form-group row">
+										<div class="col-md-2">
+											<label>File Excel *</label>
+										</div>
+										<div class="col-md-10">
+											<table id="file">
+												<tr>
+													<td><input type="file" class="form-control" name="file" required></td>
+												</tr>
+											</table>
+										</div>
+									</div>
+									<div class="form-group" style="text-align: right;">
+										<button class="btn btn-danger btn-sm" type="reset" id="btn_reset_import_tanah">Reset</button>
+										<button class="btn btn-outline-primary btn-sm" id="btn_import_tanah" type="submit">Submit</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			<!-- end modal import -->
 			</div>
 			@include('layouts.footer')
 		</div>
@@ -120,8 +154,8 @@
 	</div>
 	
 	<!--   Core JS Files   -->
-	<script src="{{ url('template/js/core/jquery.3.2.1.min.js') }}"></script>
-	{{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
+	{{-- <script src="{{ url('template/js/core/jquery.3.2.1.min.js') }}"></script> --}}
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<script src="{{ url('template/js/core/popper.min.js') }}"></script>
 	<script src="{{ url('template/js/core/bootstrap.min.js') }}"></script>
 
@@ -163,12 +197,6 @@
 
 	@stack('scripts')
 	<script>
-	$(document).ready(function() {
-		$('.select2').select2({
-			width : '100%',
-			theme: 'bootstrap4',
-		});
-	});
 	
 		$('.show_confirm').click(function(event) {
           var form =  $(this).closest("form");

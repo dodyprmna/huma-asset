@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Models\Unit;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Bangunan extends Model
 {
@@ -19,5 +19,10 @@ class Bangunan extends Model
     public function unit(): BelongsTo
     {
         return $this->belongsTo(Unit::class, 'id_call_center');
+    }
+
+    public function file(): HasMany
+    {
+        return $this->hasMany(FileBangunan::class, 'id_bangunan');
     }
 }

@@ -35,7 +35,7 @@ class StoreBangunanRequest extends FormRequest
             'nilai_buku'        => 'nullable',
             'masa_berlaku_pajak'=> 'nullable',
             'keterangan'        => 'nullable',
-            'file'            => 'nullable|mimes:pdf,jpg,png,jpeg|max:3072'
+            'file.*'            => 'mimes:pdf,jpg,png,jpeg,JPG,JPEG,PNG,PDF|max:3072'
         ];
     }
 
@@ -56,6 +56,8 @@ class StoreBangunanRequest extends FormRequest
             'tahun_perolehan.max'        => 'Field tahun perolehan maksimal 4 karakter',
             'tahun_perolehan.min'        => 'Field tahun perolehan minimal 4 karakter',
             'nilai_perolehan.decimal'    => 'Field nilai perolehan harus diisi desimal',
+            'file.*.mimes'               => 'File yang diizinkan hanya pdf, jpg, jpeg dan png',
+            'file.*.max'                 => 'Ukuran maksimal file 3MB'
         ];
     }
 }
