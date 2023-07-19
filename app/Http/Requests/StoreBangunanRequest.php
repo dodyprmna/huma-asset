@@ -56,7 +56,6 @@ class StoreBangunanRequest extends FormRequest
             'tahun_perolehan.max'        => 'Field tahun perolehan maksimal 4 karakter',
             'tahun_perolehan.min'        => 'Field tahun perolehan minimal 4 karakter',
             'nilai_perolehan.decimal'    => 'Field nilai perolehan harus diisi desimal',
-            'file.*'                     => 'File yang diizinkan hanya jpg, jpeg, png dan pdf dengan ukuran maksimal 3MB'
         ];
     }
 }

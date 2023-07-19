@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreBangunanRequest;
 use Illuminate\Http\Request;
 use App\Models\Bangunan;
 use App\Models\Unit;
@@ -34,17 +35,15 @@ class BangunanController extends Controller
         return view('pages.bangunan.create', $data);
     }
 
-    public function store()
+    public function store(StoreBangunanRequest $request) 
     {
-        $data = array(
-            'title'     => 'List Bangunan',
-            'menu'      => 'Bangunan', 
-            'bangunan'  => Bangunan::with('unit:id_call_center,nama_call_center')->get()
-        );
+        $validated = $request->validated(); 
 
-        // echo json_encode($data); die();
+        // $bangunan = new Bangunan;
 
-        return view('pages.bangunan.main', $data);
+        // $bangunan->nomor_asset = $request->
+        echo "berhasil divalidasi";
+
     }
 
     public function edit()
