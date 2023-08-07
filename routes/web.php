@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TanahController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\BangunanController;
+use App\Http\Controllers\FileBangunanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,4 @@ Route::get('/', function () {
 Route::get('/tanah', [TanahController::class, 'index'] );
 Route::resource('pegawai', PegawaiController::class);
 Route::resource('/bangunan',BangunanController::class);
+Route::get('filebangunan/{filebangunan}', [FileBangunanController::class, 'destroy'])->name('filebangunan.destroy');

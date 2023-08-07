@@ -27,6 +27,7 @@
                     <form action="{{ url('bangunan/'.$bangunan->id_bangunan)}}" enctype="multipart/form-data" method="post">
                         @csrf
                         @method('put')
+                        <input type="hidden" name="id_bangunan" value="{{ $bangunan->id_bangunan}}" id="">
                         <div class="form-group row">
                             <div class="col-md-2">
                                 <label>Unit *</label>
@@ -160,7 +161,7 @@
                                 <label>Keterangan</label>
                             </div>
                             <div class="col-md-10">
-                                <Textarea class="form-control" name="keterangan" placeholder="Isikan keterangan">{{ old('keterangan')}}</Textarea>
+                                <Textarea class="form-control" name="keterangan" placeholder="Isikan keterangan">{{ old('keterangan', $bangunan->keterangan)}}</Textarea>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -168,27 +169,27 @@
                                 <label>File</label><br><i>jpg, jpeg, png, pdf max. 3mb</i>
                             </div>
                             <div class="col-md-10">
-                                <table id="file">
-                                    @foreach ($file as $item)
-                                        <tr>
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col-md-11">
-                                                            <h5><?= $item->nama_file?></h5>
-                                                        </div>
-                                                        <div class="col-md-1">
-                                                            <form action="{{ url('bangunan/hapusFile/'.$item->id_file_bangunan)}}" method="post" class="delete_form">
-                                                                @csrf
-                                                                @method('delete')
-                                                                <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
-                                                            </form>
+                                <div class="row">
+                                    <div class="col-md-12" id="item_file">
+                                        @foreach ($file as $item)
+                                            <tr>
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-md-11">
+                                                                <h5><?= $item->nama_file?></h5>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <button type="button" class="btn btn-danger btn-xs deleteFile" data-id="{{$item->id_file_bangunan}}"><i class="fa fa-trash"></i></button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </tr>
-                                        @endforeach
+                                            </tr>
+                                            @endforeach
+                                    </div>
+                                </div>
+                                <table id="file">
                                         <tr>
                                             <td><input type="file" class="form-control @error('file')is-invalid @enderror" name="file[]"></td>
                                             <td><button type="button" class="btn btn-secondary btn-sm add-file"><i class="fa fa-plus"></i></button></td>
@@ -383,41 +384,40 @@
                                     // });
                                 });
                                 
-                                $('.delete_form').submit(function (e) {
-                                    e.preventDefault();
-
-                                    var url = $(this).attr("action");
-                                    swal({
-                                        title: "Apakah anda yakin?",
-                                        text: "file yang dihapus tidak dapat dipulihkan!",
-                                        icon: "warning",
-                                        buttons: true,
-                                        dangerMode: true,
-                                    }).then((result) => {
-                                        if (result) {	
-                                            $.ajax({
-                                                url: url,
-                                                type: 'delete',
-                                                dataType: 'json',
-                                                data: {id : id},
-                                                success:function(data){
-                                                    // console.log(data);
-                                                    if (data['status']) {
-                                                        $('#item_file').html(data.html);
-                                                    }
-                                                }
-                                            });
-                                        }
-                                    });
-                                });
-                                
-                                $(document).on("click", ".add-file", function () {
-                                    $('#file').append('<tr><td><input type="file" class="form-control" name="file[]"></td><td><button type="button" class="btn btn-danger btn-sm btn-min"><i class="fa fa-minus"></i></button></td></tr>')
-                                });
-                                
-                                $(document).on("click", ".btn-min", function () {
-                                    $(this).closest('tr').remove();
-                                });
+            $(document).on('click', '.deleteFile', function() { 
+                var id = $(this).data('id');
+                swal({
+                    title: "Apakah anda yakin?",
+                    text: "file yang dihapus tidak dapat dipulihkan!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                }).then((result) => {
+                    if (result) {	
+                        $.ajax({
+                            url: '/filebangunan/'+id,
+                            type: 'get',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Add CSRF token
+                            },
+                            success:function(data){
+                                console.log(data);
+                                if (data.status == 200) {
+                                    $('#item_file').html(data.html);
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+            
+            $(document).on("click", ".add-file", function () {
+                $('#file').append('<tr><td><input type="file" class="form-control" name="file[]"></td><td><button type="button" class="btn btn-danger btn-sm btn-min"><i class="fa fa-minus"></i></button></td></tr>')
+            });
+            
+            $(document).on("click", ".btn-min", function () {
+                $(this).closest('tr').remove();
+            });
         });
     </script>
 @endpush

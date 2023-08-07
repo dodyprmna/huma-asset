@@ -44,10 +44,13 @@
                                             <a href="{{ url('bangunan/'.$item->id_bangunan) }}" class="btn btn-secondary" title="Lihat Data"><i class="fa fa-eye"></i></a>
                                             
                                                 <a href="{{ url('bangunan/'.$item->id_bangunan.'/edit') }}" class="btn btn-primary" title="Edit Data"><i class="fa fa-edit"></i></a>
-                                            
-                                            
-                                                <a href="" class="btn btn-danger" title="Hapus Data" onclick=""><i class="fa fa-trash"></i></a>
-                                                                                    
+                                                <form action="{{ url('bangunan/'.$item->id_bangunan)}}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button class="btn btn-danger show_confirm" title="Hapus Data" type="submit"><i class="fa fa-trash"></i></button>
+                                                </form>
+                                                                               
                                         </div>
                                     </td>
                                     <td>{{$item->unit->nama_call_center}}</td>
