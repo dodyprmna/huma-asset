@@ -24,7 +24,7 @@
                     <h5><?= $title?></h5>
                 </div>
                 <div class="card-body">
-                    <form action="{{ url('pegawai') }}" method="post" id="form_pegawai">
+                    <form action="{{ url('user') }}" method="post" id="form_pegawai">
                         @method('post')
                         @csrf
                         {{-- <input type="hidden" name="id_pegawai" value="{{ isset($pegawai->id) ? $pegawai->id : '' }}"> --}}

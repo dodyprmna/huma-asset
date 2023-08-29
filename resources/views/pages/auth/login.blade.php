@@ -4,9 +4,9 @@
 	<title>Huma Asset</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" href="{{ url('img/logo_pln1.png')}}" type="image/x-icon"/>
+	<link rel="icon" href="{{ url('images/logo_pln1.png')}}" type="image/x-icon"/>
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="{{ url('img/logo_pln1.png')}}"/>
+	<link rel="icon" type="image/png" href="{{ url('images/logo_pln1.png')}}"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ url('login_page/vendor/bootstrap/css/bootstrap.min.css')}}">
 <!--===============================================================================================-->
@@ -30,20 +30,20 @@
 </head>
 <body>
 	<div class="limiter">
-		<div class="container-login100" style="background-image: url({{ url('img/bg_login.jpg')}});">
+		<div class="container-login100" style="background-image: url({{ url('images/bg_login.jpg')}});">
 			<div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41">
-					<img src="{{ url('img/logo_huma_assets.png')}}" style="width: 70%;" alt="">
+					<img src="{{ url('images/logo_huma_assets.png')}}" style="width: 70%;" alt="">
 				</span>
-				<form class="login100-form validate-form p-b-33 p-t-5" method="post" action="{{ url('Auth/login')}}">
-
+				<form class="login100-form validate-form p-b-33 p-t-5" method="post" action="{{ url('/')}}">
+					@csrf
 					<div class="wrap-input100 validate-input" data-validate = "Enter NIP">
-						<input class="input100" type="text" name="nip" placeholder="NIP">
+						<input class="input100" type="text" name="nip" placeholder="NIP" value="{{ old('nip')}}">
 						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="password" placeholder="Password">
+						<input class="input100" type="password" name="password" placeholder="Password" value="{{ old('password')}}">
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
 					</div>
 
@@ -52,11 +52,6 @@
 							Login
 						</button>
 					</div>
-					<?php if (!empty($this->session->flashdata('alert'))): }}
-		            <div class="col-12" style="padding-top: 15px">
-		              <b><p style="text-align: center; color: red"><?= $this->session->flashdata('alert') }}</p></b>
-		            </div>
-		        <?php endif }}
 				</form>
 			</div>
 		</div>

@@ -23,10 +23,10 @@
                     <h5><?= $title?></h5>
                 </div>
                 <div class="card-body">
-                    <form action="{{ url('pegawai/'.$pegawai->id_pegawai) }}" method="post" id="form_pegawai">
+                    <form action="{{ url('user/'.$pegawai->id) }}" method="post" id="form_pegawai">
                         @csrf
                         @method('put')
-                        <input type="hidden" name="id_pegawai" value="{{ isset($pegawai->id_pegawai) ? $pegawai->id_pegawai : '' }}">
+                        <input type="hidden" name="id_pegawai" value="{{ isset($pegawai->id) ? $pegawai->id : '' }}">
                         <div class="form-group">
                             <label>NIP *</label>
 							<input type="text" class="form-control @error('nip')is-invalid @enderror" pattern="^[^\s]+(\s+[^\s]+)*$" id="nip" name="nip" value="{{ old('nip',$pegawai->nip) }}" placeholder="Masukan NIP Pegawai" required>

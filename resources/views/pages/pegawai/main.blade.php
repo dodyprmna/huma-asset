@@ -12,7 +12,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							
-								<a href="{{ url('pegawai/create') }}" class="btn btn-primary btn-sm" style="float: right; margin-left: 3px;"><i class="fa fa-plus"></i> Tambah Data</a>
+								<a href="{{ url('user/create') }}" class="btn btn-primary btn-sm" style="float: right; margin-left: 3px;"><i class="fa fa-plus"></i> Tambah Data</a>
 							
 						</div>
 					</div>
@@ -36,11 +36,11 @@
                                 <tr>
                                     <td>
                                         <div class="btn-group-vertical btn-group-sm" role="group" aria-label="Basic example">
-                                            <a href="{{ url('pegawai/'.$item->id_pegawai)}}" class="btn btn-secondary" title="Lihat Data"><i class="fa fa-eye"></i></a>
+                                            <a href="{{ url('user/'.$item->id)}}" class="btn btn-secondary" title="Lihat Data"><i class="fa fa-eye"></i></a>
                                             
-                                                <a href="{{ url('pegawai/'.$item->id_pegawai.'/edit') }}" class="btn btn-primary" title="Edit Data"><i class="fa fa-edit"></i></a>
+                                                <a href="{{ url('user/'.$item->id.'/edit') }}" class="btn btn-primary" title="Edit Data"><i class="fa fa-edit"></i></a>
                                             
-                                                <form action="{{ url('pegawai/'.$item->id_pegawai)}}" method="post">
+                                                <form action="{{ url('user/'.$item->id)}}" method="post">
                                                     @csrf
                                                     @method('DELETE')
                                                     <input type="hidden" name="_method" value="DELETE">

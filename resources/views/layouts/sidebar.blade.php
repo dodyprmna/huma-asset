@@ -45,7 +45,7 @@
                     </a>
                 </li>
                 <li class="nav-item {{ $menu == 'Pegawai' ? 'active' : '' }}">
-                    <a href="{{ Url('pegawai') }}">
+                    <a href="{{ Url('user') }}">
                         <i class="fas fa-users"></i>
                         <p>Pegawai</p>
                     </a>
